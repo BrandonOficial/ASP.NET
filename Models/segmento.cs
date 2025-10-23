@@ -2,7 +2,9 @@
  * Models/Segmento.cs
  * Enum para representar as opções de segmento.
  */
-namespace CadastroFornecedores.Models
+
+// Garanta que o namespace é o nome do seu projeto.Models
+namespace DESAFIOCRUD.Models
 {
     public enum Segmento
     {

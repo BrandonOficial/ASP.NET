@@ -9,7 +9,7 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 // Assumindo que você criou a pasta 'Data' como no Passo 3
 using DESAFIOCRUD.Data; 
 
-[cite_start]var builder = WebApplication.CreateBuilder(args); [cite: 1]
+var builder = WebApplication.CreateBuilder(args);
 
 // --- INÍCIO DA ADIÇÃO (Passo 5) ---
 
@@ -32,31 +32,29 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 // Add services to the container. (Isso já estava no seu arquivo)
-[cite_start]builder.Services.AddControllersWithViews(); [cite: 1]
+builder.Services.AddControllersWithViews();
 
-[cite_start]var app = builder.Build(); [cite: 1]
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-[cite_start]if (!app.Environment.IsDevelopment()) [cite: 1]
+if (!app.Environment.IsDevelopment())
 {
-    [cite_start]app.UseExceptionHandler("/Home/Error"); [cite: 1]
+    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    [cite_start]app.UseHsts(); [cite: 1]
+    app.UseHsts();
 }
 
-[cite_start]app.UseHttpsRedirection(); [cite: 1]
-[cite_start]app.UseRouting(); [cite: 1]
+app.UseHttpsRedirection();
+app.UseStaticFiles(); // Necessário para CSS, JS e Imagens
+app.UseRouting();
 
-[cite_start]app.UseAuthorization(); [cite: 1]
+app.UseAuthorization();
 
-[cite_start]app.MapStaticAssets(); [cite: 1]
-
-[cite_start]app.MapControllerRoute( [cite: 1]
+app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    [cite_start].WithStaticAssets(); [cite: 1]
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
-[cite_start]app.Run(); [cite: 1]
+app.Run();
 
-// (Note que eu removi a chave "}" extra que tinha no final do seu arquivo original)
+// GARANTA QUE ESTA É A ÚLTIMA LINHA. SEM CHAVES '}' A MAIS DEPOIS DAQUI.

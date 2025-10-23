@@ -2,10 +2,11 @@
  * Data/ApplicationDbContext.cs
  * Contexto do EF Core que gerencia a sessão com o banco de dados.
  */
-using CadastroFornecedores.Models;
+using DESAFIOCRUD.Models; // Precisa achar a pasta Models
 using Microsoft.EntityFrameworkCore;
 
-namespace CadastroFornecedores.Data
+// Garanta que o namespace é o nome do seu projeto.Data
+namespace DESAFIOCRUD.Data
 {
     public class ApplicationDbContext : DbContext
     {
