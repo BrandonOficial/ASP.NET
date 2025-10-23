@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DESAFIOCRUD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66cbd98e2b3477ee00fbd497eb53c16d80ded136")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+578a37f97056b80cb1982999e46118b5ebedb44c")]
 [assembly: System.Reflection.AssemblyProductAttribute("DESAFIOCRUD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DESAFIOCRUD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

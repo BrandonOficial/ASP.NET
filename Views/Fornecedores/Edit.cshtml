@@ -1,0 +1,111 @@
+@model DESAFIOCRUD.Models.Fornecedor
+
+@{
+    ViewData["Title"] = "Editar Fornecedor";
+}
+
+<h1>Editar</h1>
+
+<h4>@Model.Nome</h4>
+<hr />
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6"> 
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group mb-3">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Cnpj" class="control-label"></label>
+                        <input asp-for="Cnpj" class="form-control" />
+                        <span asp-validation-for="Cnpj" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="Segmento" class="control-label"></label>
+                        <select asp-for="Segmento" class="form-control" asp-items="@(ViewData["SegmentoList"] as SelectList)">
+                            <option value="">Selecione um segmento...</option>
+                        </select>
+                        <span asp-validation-for="Segmento" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Cep" class="control-label"></label>
+                        <input asp-for="Cep" class="form-control" />
+                        <span asp-validation-for="Cep" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Endereco" class="control-label"></label>
+                        <input asp-for="Endereco" class="form-control" readonly />
+                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="FotoArquivo" class="control-label"></label>
+                        <input asp-for="FotoArquivo" class="form-control" type="file" accept="image/png" />
+                        <span asp-validation-for="FotoArquivo" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="FotoCaminho" />
+
+                    <div class="form-group">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-outline-secondary">Voltar para a Lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        // Adiciona o "escutador" de eventos ao campo CEP
+        document.getElementById("Cep").addEventListener("blur", buscaCep);
+
+        function limparEndereco(mensagem = "") {
+            document.getElementById("Endereco").value = mensagem;
+        }
+
+        function buscaCep(event) {
+            const cepInput = event.target;
+            const cep = cepInput.value.replace(/\D/g, ''); // Remove qualquer coisa que não seja dígito
+            const cepValido = /^[0-9]{8}$/;
+
+            if (!cepValido.test(cep)) {
+                limparEndereco(cep.length > 0 ? "CEP de formato inválido." : "");
+                return;
+            }
+
+            limparEndereco("Buscando endereço...");
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Não foi possível buscar o CEP.");
+                    }
+                    return response.json(); 
+                })
+                .then(data => {
+                    if (data.erro) {
+                        limparEndereco("CEP não encontrado.");
+                    } else {
+                        const enderecoCompleto = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+                        document.getElementById("Endereco").value = enderecoCompleto;
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro na busca do CEP:", error);
+                    limparEndereco("Erro ao buscar CEP. Tente novamente.");
+                });
+        }
+    </script>
+}

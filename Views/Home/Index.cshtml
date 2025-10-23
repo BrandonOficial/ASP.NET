@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página Inicial";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-5">
+    <div class="p-5 text-center bg-light rounded-3 shadow-sm">
+        <h1 class="display-4">Desafio CRUD - Fornecedores</h1>
+        <p class="lead">
+            Este projeto foi desenvolvido como um teste de conhecimento para a vaga de Estágio em DOTNET.
+        </p>
+        <hr class="my-4">
+        <p>Ele demonstra um sistema completo de Cadastro de Fornecedores (CRUD) com upload de fotos e integração com a API ViaCEP.</p>
+        
+        <a class="btn btn-primary btn-lg" 
+           asp-controller="Fornecedores" 
+           asp-action="Index" 
+           role="button">
+           Acessar o Cadastro
+        </a>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-md-10 mx-auto">
+        <h3 class="mb-3">Tecnologias Utilizadas</h3>
+        <ul class="list-group">
+            <li class="list-group-item">ASP.NET Core MVC</li>
+            <li class="list-group-item">Entity Framework Core</li>
+            <li class="list-group-item">MySQL (com Pomelo EF Core)</li>
+            <li class="list-group-item">Bootstrap 5</li>
+            <li class="list-group-item">JavaScript (para API ViaCEP)</li>
+        </ul>
+    </div>
 </div>
