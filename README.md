@@ -94,4 +94,5 @@ dotnet ef database update
 #Após o banco de dados estar pronto e atualizado, basta executar a aplicação
 dotnet run
 
-##Abra seu navegador e acesse a URL indicada no terminal (geralmente http://localhost:5xxx ou https://localhost:7xxx). Navegue até /Fornecedores para ver o CRUD em ação.
+
+#Abra seu navegador e acesse a URL indicada no terminal (geralmente http://localhost:5xxx ou https://localhost:7xxx). Navegue até /Fornecedores para ver o CRUD em ação.
